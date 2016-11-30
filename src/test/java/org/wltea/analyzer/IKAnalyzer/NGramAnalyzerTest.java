@@ -6,14 +6,11 @@ import java.io.StringReader;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.AnalyzerWrapper;
 import org.apache.lucene.analysis.TokenStream;
-import org.apache.lucene.analysis.core.SimpleAnalyzer;
 import org.apache.lucene.analysis.ngram.EdgeNGramTokenFilter;
-import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.analysis.tokenattributes.CharTermAttribute;
 import org.apache.lucene.analysis.tokenattributes.OffsetAttribute;
 import org.apache.lucene.analysis.tokenattributes.PositionIncrementAttribute;
 import org.apache.lucene.analysis.tokenattributes.PositionLengthAttribute;
-import org.apache.lucene.util.Version;
 import org.wltea.analyzer.lucene.IKAnalyzer;
 
 public class NGramAnalyzerTest {
@@ -47,7 +44,7 @@ public class NGramAnalyzerTest {
 			// 迭代获取分词结果
 			while (ts.incrementToken()) {
 				System.out.println(offset.startOffset() + " - " + offset.endOffset() + " : " + term.toString() + "|"
-						+ ince.getPositionIncrement());
+						+ ince.getPositionIncrement() +"|"+ length.getPositionLength());
 			}
 			// 关闭TokenStream（关闭StringReader）
 			ts.end(); // Perform end-of-stream operations, e.g. set the final
@@ -87,7 +84,7 @@ public class NGramAnalyzerTest {
 				if (fieldName.equals("textgrams") && 4 > 0) {
 
 					return new TokenStreamComponents(components.getTokenizer(),
-							new EdgeNGramTokenFilter(Version.LATEST, components.getTokenStream(), 1, 3));
+							new EdgeNGramTokenFilter(components.getTokenStream(), 1, 3));
 				} else {
 					return components;
 				}

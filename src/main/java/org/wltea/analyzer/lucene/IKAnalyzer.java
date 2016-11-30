@@ -1,6 +1,6 @@
 /**
- * IK 中文分词  版本 4.10.4
- * IK Analyzer release 4.10.4
+ * IK 中文分词  版本 5.0.0
+ * IK Analyzer release 5.0.0
  * 
  * Licensed to the Apache Software Foundation (ASF) under one or more
  * contributor license agreements.  See the NOTICE file distributed with
@@ -24,13 +24,12 @@
  */
 package org.wltea.analyzer.lucene;
 
-import java.io.Reader;
 
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.Tokenizer;
 
 /**
- * IK分词器，Lucene Analyzer接口实现 兼容Lucene 4.0版本
+ * IK分词器，Lucene Analyzer接口实现 兼容Lucene 5.0版本
  */
 public final class IKAnalyzer extends Analyzer {
 
@@ -68,8 +67,8 @@ public final class IKAnalyzer extends Analyzer {
 	 * 重载Analyzer接口，构造分词组件
 	 */
 	@Override
-	protected TokenStreamComponents createComponents(String fieldName, final Reader in) {
-		Tokenizer _IKTokenizer = new IKTokenizer(in, this.useSmart());
+	protected TokenStreamComponents createComponents(String fieldName) {
+		Tokenizer _IKTokenizer = new IKTokenizer(this.useSmart());
 		return new TokenStreamComponents(_IKTokenizer);
 	}
 

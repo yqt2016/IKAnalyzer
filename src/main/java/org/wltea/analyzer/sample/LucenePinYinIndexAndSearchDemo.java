@@ -22,7 +22,6 @@ import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.LockObtainFailedException;
 import org.apache.lucene.store.RAMDirectory;
-import org.apache.lucene.util.Version;
 import org.wltea.analyzer.lucene.PinYinAnalyzer;
 
 public class LucenePinYinIndexAndSearchDemo {
@@ -44,7 +43,7 @@ public class LucenePinYinIndexAndSearchDemo {
 			directory = new RAMDirectory();
 
 			// 配置IndexWriterConfig
-			IndexWriterConfig iwConfig = new IndexWriterConfig(Version.LATEST, analyzer);
+			IndexWriterConfig iwConfig = new IndexWriterConfig(analyzer);
 			iwConfig.setOpenMode(OpenMode.CREATE_OR_APPEND);
 			iwriter = new IndexWriter(directory, iwConfig);
 			// 写入索引

@@ -1,7 +1,6 @@
 package org.wltea.analyzer.lucene;
 
 import java.io.IOException;
-import java.io.Reader;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,7 +11,7 @@ import org.apache.lucene.analysis.util.ClasspathResourceLoader;
 import org.apache.lucene.util.Version;
 
 /**
- * IK同义词分词器，Lucene Analyzer接口实现 兼容Lucene 4.0版本
+ * IK同义词分词器，Lucene Analyzer接口实现 兼容Lucene 5.0版本
  */
 public class IKSynonymAnalyzer extends Analyzer {
 	private Version version = Version.LATEST;
@@ -65,8 +64,8 @@ public class IKSynonymAnalyzer extends Analyzer {
 	 * 重载Analyzer接口，构造分词组件
 	 */
 	@Override
-	protected TokenStreamComponents createComponents(String fieldName, final Reader in) {
-		Tokenizer _IKTokenizer = new IKTokenizer(in, this.useSmart());
+	protected TokenStreamComponents createComponents(String fieldName) {
+		Tokenizer _IKTokenizer = new IKTokenizer(this.useSmart());
 		Map<String, String> filterArgs = new HashMap<String, String>();
 		filterArgs.put("luceneMatchVersion", version.toString());
 		filterArgs.put("synonyms", dicPath);

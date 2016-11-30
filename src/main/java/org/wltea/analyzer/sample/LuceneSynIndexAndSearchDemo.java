@@ -10,7 +10,7 @@ import org.apache.lucene.document.StringField;
 import org.apache.lucene.document.TextField;
 import org.apache.lucene.index.CorruptIndexException;
 import org.apache.lucene.index.DirectoryReader;
-import org.apache.lucene.index.FieldInfo;
+import org.apache.lucene.index.IndexOptions;
 import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig;
@@ -24,7 +24,6 @@ import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.LockObtainFailedException;
 import org.apache.lucene.store.RAMDirectory;
-import org.apache.lucene.util.Version;
 import org.wltea.analyzer.lucene.IKAnalyzer;
 import org.wltea.analyzer.lucene.IKSynonymAnalyzer;
 
@@ -54,13 +53,13 @@ public class LuceneSynIndexAndSearchDemo {
 			directory = new RAMDirectory();
 
 			// 配置IndexWriterConfig
-			IndexWriterConfig iwConfig = new IndexWriterConfig(Version.LATEST, indexanalyzer);
+			IndexWriterConfig iwConfig = new IndexWriterConfig(indexanalyzer);
 			iwConfig.setOpenMode(OpenMode.CREATE_OR_APPEND);
 			iwriter = new IndexWriter(directory, iwConfig);
 			// 写入索引
 			Document doc = new Document();
 			FieldType ft = new FieldType(TextField.TYPE_NOT_STORED);
-			ft.setIndexOptions(FieldInfo.IndexOptions.DOCS_AND_FREQS_AND_POSITIONS);
+			ft.setIndexOptions(IndexOptions.DOCS_AND_FREQS_AND_POSITIONS_AND_OFFSETS);
 			ft.setStoreTermVectors(true);
 			ft.setStoreTermVectorPositions(true);
 			ft.setOmitNorms(true);
