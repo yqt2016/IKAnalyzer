@@ -12,7 +12,7 @@
 	<description>IKAnalyzer for sdo Search</description>
 
 	<properties>
-		<lucene>5.5.3</lucene>
+		<lucene>5.0.0</lucene>
 	</properties>
 
 
