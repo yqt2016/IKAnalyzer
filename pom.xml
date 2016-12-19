@@ -43,7 +43,7 @@
 
 	</dependencies>
 	<build>
-		<finalName>sdo</finalName>
+		<finalName>${name}-${version}</finalName>
 		<plugins>
 			<plugin>
 				<!-- Compile & Package config -->
