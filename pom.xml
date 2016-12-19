@@ -40,8 +40,8 @@
 			<version>${lucene}</version>
 		</dependency>
 
-
 	</dependencies>
+
 	<build>
 		<finalName>${name}-${version}</finalName>
 		<plugins>
@@ -59,4 +59,5 @@
 			</plugin>
 		</plugins>
 	</build>
+
 </project>
